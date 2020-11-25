@@ -16,19 +16,46 @@ import java.util.List;
 public class Collection {
 	public static void main(String args[])
 	{
-		List <String> produtos = new ArrayList();
-		
-		produtos.add("Celular");
-		produtos.add("Notebook");
-		produtos.add("Carregador Portátil");
-		produtos.add("Caixa de Som");
-		
-		System.out.println("Estoque: " + produtos);
+		List <Estoque> produtos = new ArrayList<Estoque>();
 		
 		
-		produtos.remove("Caixa de Som");
+		produtos.add(new Estoque(1500, 8, "Celular"));
+		produtos.add(new Estoque(2500, 20, "Notebook"));
+		produtos.add(new Estoque(100, 6, "Carregador Portátil"));
+		produtos.add(new Estoque(350.50, 4, "Caixa de Som"));
 		
-		System.out.println("Estoque: " + produtos);
+		//método try e catch pra encontrar erros
+		try {
+			for (Estoque produto : produtos) {
+				//index pra ordenar os itens
+				System.out.println("[ index= " + produtos.indexOf(produto) + 
+									" valor = " + produto + " ]");
+			//	Double.parseDouble("batatinha");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			//traz o tipo de erro
+			System.out.println(e.toString());
+			
+		}
+		finally {
+			System.out.println("Estou finalizando");
+		}
+		
+		//troca o produto de acorod com a posição
+		produtos.set(0, new Estoque(1800, 7, "Smartphone"));
+		
+		produtos.remove(new Estoque(350.50, 4, "Caixa de Som"));
+		
+		//escreve um por linha
+		for (Estoque produto : produtos) {
+			System.out.println(produto);
+		}
+		
+		
+		
+		
+		
 		
 	}
 
