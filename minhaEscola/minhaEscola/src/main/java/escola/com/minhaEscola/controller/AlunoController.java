@@ -1,4 +1,4 @@
-package com.farmcia.farmacia.controller;
+package escola.com.minhaEscola.controller;
 
 import java.util.List;
 
@@ -15,55 +15,45 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.farmcia.farmacia.model.Categoria;
-import com.farmcia.farmacia.repository.CategoriaRepository;
+import escola.com.minhaEscola.model.Aluno;
+import escola.com.minhaEscola.repository.AlunoRepository;
 
 @RestController
-
-@CrossOrigin(origins = "*", allowedHeaders = "*")
-public class CategoriaController {
+@RequestMapping("/aluno")
+@CrossOrigin("*")
+public class AlunoController {
 	
 	@Autowired
-	private CategoriaRepository repository;
+	private AlunoRepository repository;
 	
 	@GetMapping
-	public ResponseEntity<List<Categoria>> GetAll(){
+	public ResponseEntity<List<Aluno>> GetAll(){
 		return ResponseEntity.ok(repository.findAll());
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Categoria> GetById (@PathVariable long id){
-		return repository.findById(id).map(resp -> ResponseEntity.ok(resp))
+	public ResponseEntity<Aluno> GetById(@PathVariable long id){
+		return repository.findById(id)
+				.map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
 	@PostMapping
-	public ResponseEntity<Categoria> post (@RequestBody Categoria categoria){
-		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(categoria));
+	public ResponseEntity<Aluno> post (@RequestBody Aluno aluno){
+		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(aluno));
+		
 	}
 	
 	@PutMapping
-	public ResponseEntity<Categoria> put (@RequestBody Categoria categoria) {
-		return ResponseEntity.status(HttpStatus.OK).body(repository.save(categoria));
+	public ResponseEntity<Aluno> put (@RequestBody Aluno aluno){
+		return ResponseEntity.status(HttpStatus.OK).body(repository.save(aluno));
+		
 	}
 	
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable long id) {
 		repository.deleteById(id);
+		
 	}
-	
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

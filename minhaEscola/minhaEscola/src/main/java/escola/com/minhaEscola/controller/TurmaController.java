@@ -20,7 +20,7 @@ import escola.com.minhaEscola.repository.TurmaRepository;
 
 @RestController
 @RequestMapping("/turma")
-@CrossOrigin("*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class TurmaController {
 	
 	@Autowired
