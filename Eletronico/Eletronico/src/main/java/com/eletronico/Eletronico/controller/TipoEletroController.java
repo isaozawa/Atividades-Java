@@ -21,7 +21,7 @@ import com.eletronico.Eletronico.repository.TipoEletroRepository;
 
 @RestController
 @RequestMapping("/tipoeletro")
-@CrossOrigin("*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class TipoEletroController {
 	
 	@Autowired

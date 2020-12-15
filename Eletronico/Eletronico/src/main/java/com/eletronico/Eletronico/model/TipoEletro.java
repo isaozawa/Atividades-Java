@@ -1,5 +1,7 @@
 package com.eletronico.Eletronico.model;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,6 +27,10 @@ public class TipoEletro {
 	@NotNull
 	private boolean ativo;
 	
+	@OneToMany(mappedBy = "tipoEletro", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("tipoEletro")
+	private List<Produto> produto;
+	
 	public long getId() {
 		return id;
 	}
@@ -49,7 +55,14 @@ public class TipoEletro {
 		this.ativo = ativo;
 	}
 	
-	
+	public List<Produto> getProduto() {
+		return produto;
+	}
+
+	public void setProduto(List<Produto> produto) {
+		this.produto = produto;
+	}
+
 	
 
 }
