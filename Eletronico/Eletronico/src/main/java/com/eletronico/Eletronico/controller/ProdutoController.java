@@ -38,6 +38,12 @@ public class ProdutoController {
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
+	@GetMapping("/range/{precoInicial}/{precoFinal}")
+	public ResponseEntity<List<Produto>> findByPrecoBetween (@PathVariable double precoInicial,@PathVariable double precoFinal){
+		return ResponseEntity.ok(repository.findByPrecoBetween(precoInicial, precoFinal));
+	}
+	
+	
 	@PostMapping
 	public ResponseEntity<Produto> post (@RequestBody Produto produto){
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(produto));

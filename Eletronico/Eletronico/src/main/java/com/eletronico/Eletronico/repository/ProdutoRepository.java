@@ -9,5 +9,7 @@ import com.eletronico.Eletronico.model.Produto;
 public interface ProdutoRepository extends JpaRepository<Produto, Long>{
 	
 	public List<Produto> findAllByNomeContainintIgnoreCase (String nome);
+	
+	public List<Produto> findByPrecoBetween(double precoInicial, double precoFinal);
 
 }
